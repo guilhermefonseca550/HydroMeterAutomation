@@ -4,7 +4,7 @@ A Java Spring Boot console application designed to automate the renaming and org
 
 Instead of manually renaming hundreds of photos taken during a meter reading route, this application reads the chronological metadata of the files directly from the cloud and automatically applies specific naming conventions based on the physical layout of the condominium.
 
-🚀 Features
+## 🚀 Features
 
 Zero-Download Metadata Extraction: Utilizes the Google Drive API v3 (imageMediaMetadata and createdTime) to fetch chronological data without downloading heavy image files, making the script incredibly fast and efficient.
 
@@ -16,7 +16,7 @@ Dynamic Extension Handling: Automatically preserves the original file extension 
 
 Smart Numbering: Handles complex routing logic (like zig-zag routes across multiple buildings) using modulo and integer division math.
 
-🏗️ Architecture: The Strategy Pattern
+## 🏗️ Architecture: The Strategy Pattern
 
 The core naming logic is abstracted behind a StrategyInterface. This allows the application to scale to dozens of different condominiums without cluttering the main loop with if/else statements.
 
@@ -26,7 +26,7 @@ DefaultStrategy: A standard sequential naming rule.
 
 VeredasStrategy: A complex mathematical rule that maps a continuous timeline of photos into 17 distinct buildings, each with 20 apartments arranged in a 4-column zig-zag layout.
 
-🛠️ Technologies Used
+## 🛠️ Technologies Used
 
 Java 26
 
@@ -34,7 +34,7 @@ Spring Boot (CommandLineRunner)
 
 Google Drive API v3
 
-⚙️ Setup and Execution
+## ⚙️ Setup and Execution
 
 Google Cloud Credentials:
 
@@ -44,7 +44,7 @@ Enable the Google Drive API.
 
 Generate a Service Account or OAuth 2.0 credentials and save the credentials.json file in your project resources.
 
-Run the Application:
+### Run the Application:
 
 Start the Spring Boot application.
 
