@@ -6,25 +6,25 @@ Instead of manually renaming hundreds of photos taken during a meter reading rou
 
 ## 🚀 Features
 
-Zero-Download Metadata Extraction: Utilizes the Google Drive API v3 (imageMediaMetadata and createdTime) to fetch chronological data without downloading heavy image files, making the script incredibly fast and efficient.
+****Zero-Download** Metadata Extraction**: Utilizes the Google Drive API v3 (imageMediaMetadata and createdTime) to fetch chronological data without downloading heavy image files, making the script incredibly fast and efficient.
 
-Chronological Mapping: Sorts photos based on the exact second they were taken, perfectly mirroring the physical walking route of the meter reader.
+**Chronological Mapping**: Sorts photos based on the exact second they were taken, perfectly mirroring the physical walking route of the meter reader.
 
-Strategy Pattern Architecture: Built with scalability in mind. It uses the Strategy design pattern to apply different naming rules depending on the condominium's layout.
+**Strategy Pattern Architecture**: Built with scalability in mind. It uses the Strategy design pattern to apply different naming rules depending on the condominium's layout.
+**
+Dynamic Extension Handling**: Automatically preserves the original file extension (e.g., .HEIC, .jpg, .png), preventing file corruption.
 
-Dynamic Extension Handling: Automatically preserves the original file extension (e.g., .HEIC, .jpg, .png), preventing file corruption.
-
-Smart Numbering: Handles complex routing logic (like zig-zag routes across multiple buildings) using modulo and integer division math.
+**Smart Numbering**: Handles complex routing logic (like zig-zag routes across multiple buildings) using modulo and integer division math.
 
 ## 🏗️ Architecture: The Strategy Pattern
 
 The core naming logic is abstracted behind a StrategyInterface. This allows the application to scale to dozens of different condominiums without cluttering the main loop with if/else statements.
 
-Currently implemented strategies:
+**Currently implemented strategies**:
 
-DefaultStrategy: A standard sequential naming rule.
+**DefaultStrategy**: A standard sequential naming rule.
 
-VeredasStrategy: A complex mathematical rule that maps a continuous timeline of photos into 17 distinct buildings, each with 20 apartments arranged in a 4-column zig-zag layout.
+**VeredasStrategy**: A complex mathematical rule that maps a continuous timeline of photos into 17 distinct buildings, each with 20 apartments arranged in a 4-column zig-zag layout.
 
 ## 🛠️ Technologies Used
 
