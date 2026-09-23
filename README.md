@@ -1,4 +1,4 @@
-Water Meter Photo Organizer
+# Water Meter Photo Organizer
 
 A Java Spring Boot console application designed to automate the renaming and organization of water meter reading photos stored in Google Drive.
 
