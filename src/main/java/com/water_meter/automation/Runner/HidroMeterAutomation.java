@@ -54,6 +54,7 @@ public class HidroMeterAutomation implements CommandLineRunner {
 
         FileList result = drive.files().list()
                 .setQ(query)
+                .setPageSize(1000)
                 .setFields("nextPageToken, files(id, name, mimeType, createdTime, imageMediaMetadata)")
                 .execute();
 
@@ -89,11 +90,13 @@ int opcao = input.nextInt();
             readingList.sort(Comparator.comparing(HydroMeterReading::originalDate));
             chosenRule = new VeredasStrategy(5, 4);
         }
+
         int index = 0; // Controla a posição cronológica
         for (HydroMeterReading reading : readingList) {
 
+
             String originalName = reading.driveFiles().getName();
-            String extension = originalName.substring(originalName.lastIndexOf("."));
+            String extension = originalName.substring(originalName.lastIndexOf(""));
             String newName = chosenRule.generateNewName(index, reading.originalDate()) +  extension;
 
             File atualizacaoMetadados = new File();
