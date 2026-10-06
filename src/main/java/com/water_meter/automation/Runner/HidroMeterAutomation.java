@@ -57,7 +57,7 @@ public class HidroMeterAutomation implements CommandLineRunner {
         List<File> driveFiles = result.getFiles();
 
         if (driveFiles == null || driveFiles.isEmpty()) {
-            System.out.println("Nenhuma imagem para processar na pasta.");
+            System.out.println("Nenhuma imagem para processar na pasta!");
             return;
         }
 
