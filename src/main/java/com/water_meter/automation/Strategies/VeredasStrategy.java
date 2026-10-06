@@ -18,7 +18,7 @@ public class VeredasStrategy implements StrategyInterface {
 
     @Override
     public String generateNewName(int timeIndex, Date photoDate) {
-        // timeIndex vem na ordem "unidade por unidade, andar por andar" (a ordem original da captura)
+
         int apartment = timeIndex / floors;   // 0-based
         int floor = timeIndex % floors;    // 0-based
         int buildingNumber = (timeIndex / 20) + 1;
@@ -32,7 +32,7 @@ public class VeredasStrategy implements StrategyInterface {
 
         String formatedDate = dateFormat.format(photoDate);
 
-        // zero-padding garante que a ordenação alfabética dos arquivos já saia na ordem certa (por andar)
+
         return String.format("apto_%02d_%02d", buildingNumber, apNumber);
     }
 }

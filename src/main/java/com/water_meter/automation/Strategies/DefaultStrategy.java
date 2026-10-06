@@ -1,12 +1,9 @@
 package com.water_meter.automation.Strategies;
 
-import com.google.api.services.drive.model.File;
 import com.water_meter.automation.Interfaces.StrategyInterface;
-import com.water_meter.automation.Runner.HidroMeterAutomation;
+
 
 import java.text.SimpleDateFormat;
-import java.util.Comparator;
-import java.util.Date;
 
 public class DefaultStrategy implements StrategyInterface{
 

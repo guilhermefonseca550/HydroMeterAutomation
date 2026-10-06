@@ -1,9 +1,6 @@
 package com.water_meter.automation.Runner;
 
-import ch.qos.logback.classic.spi.EventArgUtil;
-import com.drew.imaging.ImageMetadataReader;
-import com.drew.metadata.Metadata;
-import com.drew.metadata.exif.ExifSubIFDDirectory;
+
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
@@ -14,9 +11,7 @@ import com.water_meter.automation.Strategies.VeredasStrategy;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.io.FileOutputStream;
-import java.io.OutputStream;
-import java.sql.SQLOutput;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -72,7 +67,7 @@ public class HidroMeterAutomation implements CommandLineRunner {
         System.out.println("Processando e extraindo datas...");
         System.out.println("Processando datas do Drive...");
         for (File driveFile : driveFiles) {
-            // Agora é só uma linha chamando o novo metodo e criando o seu "Record"
+
             Date originalDate = getGoogleFileDate(driveFile);
             readingList.add(new HydroMeterReading(driveFile, originalDate));
         }
@@ -91,7 +86,7 @@ int opcao = input.nextInt();
             chosenRule = new VeredasStrategy(5, 4);
         }
 
-        int index = 0; // Controla a posição cronológica
+        int index = 0;
         for (HydroMeterReading reading : readingList) {
 
 
@@ -99,9 +94,9 @@ int opcao = input.nextInt();
             String extension = originalName.substring(originalName.lastIndexOf(""));
             String newName = chosenRule.generateNewName(index, reading.originalDate()) +  extension;
 
-            File atualizacaoMetadados = new File();
-            atualizacaoMetadados.setName(newName);
-            drive.files().update(reading.driveFiles().getId(), atualizacaoMetadados).execute();
+            File metaDataAtt = new File();
+            metaDataAtt.setName(newName);
+            drive.files().update(reading.driveFiles().getId(), metaDataAtt).execute();
             System.out.println("Renomeando: " + reading.driveFiles().getName() + " -> " + newName);
 
 
@@ -116,26 +111,25 @@ int opcao = input.nextInt();
 
     private Date getGoogleFileDate(File driveFile) {
         try {
-            // 1. Tenta pegar a data da câmera lida pelo próprio Google (Plano A)
+
             if (driveFile.getImageMediaMetadata() != null && driveFile.getImageMediaMetadata().getTime() != null) {
                 String textDate = driveFile.getImageMediaMetadata().getTime();
 
-                // O padrão EXIF na nuvem sempre usa dois pontos até na data: "yyyy:MM:dd HH:mm:ss"
+
                 SimpleDateFormat formatoExif = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
                 return formatoExif.parse(textDate);
             }
 
-            // 2. Se a foto não tiver data original, usamos a data de Criação no Drive (Plano B)
+
             if (driveFile.getCreatedTime() != null) {
-                // O getCreatedTime() retorna um tipo específico do Google.
-                // O .getValue() extrai os milissegundos exatos, que o java.util.Date entende.
+
                 return new Date(driveFile.getCreatedTime().getValue());
             }
         } catch (Exception e) {
             System.out.println("Erro ao converter data do arquivo " + driveFile.getName());
         }
 
-        // 3. Plano C (emergência para não quebrar a automação)
+
         return new Date();
     }
 }
