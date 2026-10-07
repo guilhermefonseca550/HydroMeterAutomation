@@ -28,7 +28,7 @@ The core naming logic is abstracted behind a StrategyInterface. This allows the 
 
 ## 🛠️ Technologies Used
 
-Java 26
+Java 21
 
 Spring Boot (CommandLineRunner)
 
